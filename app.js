@@ -113,7 +113,7 @@ function updateProjectSelectVisibility(whenValue) {
 // Populate (project) select in task modal
 function populateProjectSelect() {
   if (!taskCategorySelect) return;
-  taskCategorySelect.innerHTML = '<option value="">(project)</option>';
+  taskCategorySelect.innerHTML = '<option value="">None</option>';
   projects.forEach(p => {
     const o = document.createElement('option'); o.value = p; o.textContent = p;
     taskCategorySelect.appendChild(o);
@@ -293,7 +293,6 @@ taskForm.addEventListener('submit', (ev) => {
     const idx = tasks.findIndex(t => t.id === id);
     if (idx >= 0) {
       tasks[idx].title = title;
-      tasks[idx].notes = notes;
       tasks[idx].when = when;
       tasks[idx].project = when === 'someday' ? project : null;
     }
@@ -302,7 +301,6 @@ taskForm.addEventListener('submit', (ev) => {
     tasks.push({
       id: uid(),
       title,
-      notes,
       when,
       project: when === 'someday' ? project : null,
       done: false
@@ -451,7 +449,6 @@ taskForm.addEventListener('submit', (ev) => {
     const idx = tasks.findIndex(t => t.id === id);
     if (idx >= 0) {
       tasks[idx].title = title;
-      tasks[idx].notes = notes;
       tasks[idx].when = when;
       tasks[idx].project = when === 'someday' ? project : null;
     }
@@ -459,7 +456,6 @@ taskForm.addEventListener('submit', (ev) => {
     tasks.push({
       id: uid(),
       title,
-      notes,
       when,
       project: when === 'someday' ? project : null,
       done: false
@@ -469,6 +465,32 @@ taskForm.addEventListener('submit', (ev) => {
   saveAll();
   hideTaskModal();
   renderAll();
+});
+
+const buttons = document.querySelectorAll('.bottom-bar button');
+const sections = document.querySelectorAll('.section');
+
+buttons.forEach(btn => {
+    btn.addEventListener('click', () => {
+    const target = btn.getAttribute('data-target');
+
+    // hide all sections
+    sections.forEach(sec => sec.classList.remove('active'));
+
+    // remove active class from all buttons
+    buttons.forEach(b => b.classList.remove('active'));
+
+    // show the chosen section
+    document.querySelector(`.section.${target}`).classList.add('active');
+    btn.classList.add('active');
+    });
+});
+
+buttons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    buttons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+  });
 });
 
 // ---- initialise ----

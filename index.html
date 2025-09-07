@@ -11,70 +11,76 @@
 
 <body>
   <main>
-    <!-- Today -->
-    <section class="section today">
-      <div class="header">
-        <div class="title-row">
-          <div class="dot" style="background:var(--today)"></div>
-          <div class="title">Today</div>
-        </div>
-        <button class="plus" data-add="today">＋</button>
+  <!-- Today -->
+  <section class="section today active">
+    <div class="header">
+      <div class="title-row">
+        <div class="dot" style="background:var(--today, red)"></div>
+        <div class="title">Today</div>
       </div>
-      <div class="list" id="todayList"></div>
-    </section>
+      <button class="plus" data-add="today">＋</button>
+    </div>
+    <div class="list" id="todayList"></div>
+  </section>
 
-    <!-- Next -->
-    <section class="section next">
-      <div class="header">
-        <div class="title-row">
-          <div class="dot" style="background:var(--next)"></div>
-          <div class="title">Next</div>
-        </div>
-        <button class="plus" data-add="nextday">＋</button>
+  <!-- Next -->
+  <section class="section next">
+    <div class="header">
+      <div class="title-row">
+        <div class="dot" style="background:var(--next, blue)"></div>
+        <div class="title">Next</div>
       </div>
-      <div class="list" id="nextList"></div>
-    </section>
+      <button class="plus" data-add="nextday">＋</button>
+    </div>
+    <div class="list" id="nextList"></div>
+  </section>
 
-    <!-- Someday -->
-    <section class="section someday">
-      <div class="header">
-        <div class="title-row">
-          <div class="dot" style="background:var(--someday)"></div>
-          <div class="title">Someday</div>
-        </div>
-        <button class="plus" data-add="someday">＋</button>
+  <!-- Someday -->
+  <section class="section someday">
+    <div class="header">
+      <div class="title-row">
+        <div class="dot" style="background:var(--someday, green)"></div>
+        <div class="title">Someday</div>
       </div>
-      <div class="list" id="somedayList"></div>
-      <div id="projectsContainer"></div>
-      <button id="addProjectBtn" class="add-project-btn">+ Add Project</button>
-    </section>
-  </main>
+      <button class="plus" data-add="someday">＋</button>
+    </div>
+    <div class="list" id="somedayList"></div>
+    <div id="projectsContainer"></div>
+    <button id="addProjectBtn" class="add-project-btn">+ Add Project</button>
+  </section>
+
+  <!-- Bottom bar -->
+  <div class="bottom-bar">
+    <button data-target="today" class="active">T</button>
+    <button data-target="next">N</button>
+    <button data-target="someday">S</button>
+  </div>
 
   <!-- modal -->
-  <div class="modal" id="modal" style="display:none">
-    <div class="sheet">
-      <form id="taskForm">
-        <input type="hidden" id="taskId" />
-        <input class="field" id="taskTitle" placeholder="Task title" required />
+  <div class="modal" id="modal">
+  <div class="sheet">
+    <form id="taskForm">
+      <input type="hidden" id="taskId" />
+      <input class="field" id="taskTitle" placeholder="Task title" required />
 
-        <!-- Horizontal options for taskWhen -->
-        <div class="options-container" id="taskWhenOptions">
-          <div class="option selected" data-value="today">Today</div>
-          <div class="option" data-value="nextday">Next day</div>
-          <div class="option" data-value="nextweek">Next week</div>
-          <div class="option" data-value="someday">Someday</div>
-        </div>
-        <input type="hidden" id="taskWhen" value="today" />
+      <div class="options-container" id="taskWhenOptions">
+        <div class="option selected" data-value="today">TODAY</div>
+        <div class="option" data-value="nextday">NEXT DAY</div>
+        <div class="option" data-value="nextweek">NEXT WEEK</div>
+        <div class="option" data-value="someday">SOMEDAY</div>
+      </div>
+      <input type="hidden" id="taskWhen" value="today" />
 
-        <select id="taskCategory" class="field">
-          <option value="">Select Project</option>
-        </select>
+      <select id="taskCategory" class="field">
+        <option value="">none</option>
+      </select>
 
-        <button type="button" class="btn ghost" data-close>CANCEL</button>
-        <button type="submit" class="btn ghost" id="saveBtn">SAVE</button>
-      </form>
-    </div>
+      <button type="button" class="btn ghost" data-close>CANCEL</button>
+      <button type="submit" class="btn ghost" id="saveBtn">SAVE</button>
+    </form>
   </div>
+</div>
+
 
   <script src="app.js"></script>
 
