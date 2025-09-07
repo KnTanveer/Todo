@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Minimal Todo — Today / Next / Someday</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <!-- Today -->
+  <section class="section today">
+    <div class="header">
+      <div class="title-row"><div class="dot" style="background:var(--today)"></div><div class="title">Today</div></div>
+      <button class="plus" data-add="today">＋</button>
+    </div>
+    <div class="date-row"><div class="date"><span class="big" id="todayDateLabel">—</span></div></div>
+    <div class="list" id="todayList"></div>
+  </section>
+
+  <!-- Next -->
+  <section class="section next">
+    <div class="header">
+      <div class="title-row"><div class="dot" style="background:var(--next)"></div><div class="title">Next</div></div>
+      <button class="plus" data-add="nextday">＋</button>
+    </div>
+    <div class="date-row"><div class="date"><span class="big" id="nextDateLabel">—</span> NEXT DAY</div></div>
+    <div class="list" id="nextList"></div>
+  </section>
+
+  <!-- Someday -->
+  <section class="section someday">
+    <div class="header">
+      <div class="title-row"><div class="dot" style="background:var(--someday)"></div><div class="title">Someday</div></div>
+      <button class="plus" data-add="someday">＋</button>
+    </div>
+    <div class="date-row"><div class="date"><span class="big">UNPLANNED</span></div></div>
+    <div class="list" id="somedayList"></div>
+    <div id="projectsContainer"></div>
+    <button id="addProjectBtn" class="add-project-btn">+ Add Project</button>
+  </section>
+</main>
+
+<!-- modal -->
+<div class="modal" id="modal" style="display:none">
+  <div class="sheet">
+    <form id="taskForm">
+      <input type="hidden" id="taskId" />
+      <input class="field" id="taskTitle" placeholder="Task title" required />
+      <textarea id="taskNotes" class="field" placeholder="Notes (optional)"></textarea>
+      <select id="taskWhen" class="field">
+        <option value="today">Today</option>
+        <option value="nextday">Next day</option>
+        <option value="nextweek">Next week</option>
+        <option value="someday">Someday</option>
+      </select>
+      <select id="taskCategory" class="field"><option value="">(project)</option></select>
+      <button type="submit">Save</button>
+    </form>
+  </div>
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
