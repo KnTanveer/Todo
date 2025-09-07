@@ -56,7 +56,6 @@
       <form id="taskForm">
         <input type="hidden" id="taskId" />
         <input class="field" id="taskTitle" placeholder="Task title" required />
-        <textarea id="taskNotes" class="field" placeholder="Notes (optional)"></textarea>
 
         <!-- Horizontal options for taskWhen -->
         <div class="options-container" id="taskWhenOptions">
@@ -68,10 +67,11 @@
         <input type="hidden" id="taskWhen" value="today" />
 
         <select id="taskCategory" class="field">
-          <option value="">(project)</option>
+          <option value="">Select Project</option>
         </select>
 
-        <button type="submit">Save</button>
+        <button type="button" class="btn ghost" data-close>CANCEL</button>
+        <button type="submit" class="btn primary" id="saveBtn">SAVE</button>
       </form>
     </div>
   </div>

@@ -210,13 +210,15 @@ main {
     border-radius: 5px;
     cursor: pointer;
     user-select: none;
-    transition: background 0.2s, color 0.2s;
+    background: transparent;
+    color: var(--text);
+    border-color: transparent;
 }
 
 .option.selected {
-    background-color: #007bff;
-    color: white;
-    border-color: #007bff;
+    background: transparent;
+    color: var(--next);
+    border-color: transparent;
 }
 
 /* simple form modal (keeps minimal) */
@@ -288,8 +290,8 @@ main {
 } 
 
 .btn.primary {
-    background:var(--next);
-    color:#05101c;
+    background: transparent;
+    color: var(--next);
     font-weight:700
 }
 

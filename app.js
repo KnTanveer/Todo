@@ -28,12 +28,11 @@ const modal = document.getElementById('modal');            // the task modal con
 const taskForm = document.getElementById('taskForm');      // form element
 const taskIdInput = document.getElementById('taskId');
 const taskTitleInput = document.getElementById('taskTitle');
-const taskNotesInput = document.getElementById('taskNotes');
 const taskWhenSelect = document.getElementById('taskWhen');
 const taskCategorySelect = document.getElementById('taskCategory');
 
 if (!modal || !taskForm || !taskTitleInput || !taskWhenSelect || !taskCategorySelect) {
-  console.warn('Task modal or required fields missing. Script expects IDs: modal, taskForm, taskId, taskTitle, taskNotes, taskWhen, taskCategory.');
+  console.warn('Task modal or required fields missing. Script expects IDs: modal, taskForm, taskId, taskTitle, taskWhen, taskCategory.');
 }
 
 // ---- dynamically create project modal if not present ----
@@ -47,7 +46,7 @@ function ensureProjectModal() {
     <div class="scrim" data-close></div>
     <div class="sheet" role="dialog" aria-modal="true" style="max-width:520px">
       <form id="projectForm">
-        <label style="display:block;margin-bottom:8px;color:var(--muted);font-size:13px">Project name</label>
+        <label style="display:block; margin-bottom:8px; color:var(--muted); font-size:13px">Project name </label>
         <input id="projectEditName" class="field" placeholder="Project name" autocomplete="off" />
         <div style="display:flex;gap:8px;justify-content:flex-end;margin-top:10px">
           <button type="button" id="cancelProjectBtn" class="btn ghost">Cancel</button>
@@ -80,13 +79,11 @@ function showTaskModal(task = null, presetWhen = null) {
   if (task) {
     taskIdInput.value = task.id;
     taskTitleInput.value = task.title || '';
-    taskNotesInput.value = task.notes || '';
     taskWhenSelect.value = task.when || 'today';
     taskCategorySelect.value = task.project || '';
   } else {
     taskIdInput.value = '';
     taskTitleInput.value = '';
-    taskNotesInput.value = '';
     taskWhenSelect.value = presetWhen || 'today';
     taskCategorySelect.value = '';
   }
@@ -288,7 +285,6 @@ taskForm.addEventListener('submit', (ev) => {
     alert('Please enter a task title');
     return;
   }
-  const notes = taskNotesInput ? taskNotesInput.value : '';
   const when = taskWhenSelect ? taskWhenSelect.value : 'today';
   const project = (taskCategorySelect && taskCategorySelect.value) || null;
 
@@ -409,7 +405,6 @@ function showTaskModal(task = null, presetWhen = null) {
   if (task) {
     taskIdInput.value = task.id;
     taskTitleInput.value = task.title || '';
-    taskNotesInput.value = task.notes || '';
     taskCategorySelect.value = task.project || '';
 
     // select the correct horizontal option
@@ -418,7 +413,6 @@ function showTaskModal(task = null, presetWhen = null) {
   } else {
     taskIdInput.value = '';
     taskTitleInput.value = '';
-    taskNotesInput.value = '';
     taskCategorySelect.value = '';
 
     const preset = presetWhen || 'today';
@@ -450,7 +444,6 @@ taskForm.addEventListener('submit', (ev) => {
     alert('Please enter a task title');
     return;
   }
-  const notes = taskNotesInput ? taskNotesInput.value : '';
   const when = taskWhenInput.value || 'today';
   const project = (taskCategorySelect && taskCategorySelect.value) || null;
 
