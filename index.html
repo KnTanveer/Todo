@@ -57,13 +57,20 @@
         <input type="hidden" id="taskId" />
         <input class="field" id="taskTitle" placeholder="Task title" required />
         <textarea id="taskNotes" class="field" placeholder="Notes (optional)"></textarea>
-        <select id="taskWhen" class="field">
-          <option value="today">Today</option>
-          <option value="nextday">Next day</option>
-          <option value="nextweek">Next week</option>
-          <option value="someday">Someday</option>
+
+        <!-- Horizontal options for taskWhen -->
+        <div class="options-container" id="taskWhenOptions">
+          <div class="option selected" data-value="today">Today</div>
+          <div class="option" data-value="nextday">Next day</div>
+          <div class="option" data-value="nextweek">Next week</div>
+          <div class="option" data-value="someday">Someday</div>
+        </div>
+        <input type="hidden" id="taskWhen" value="today" />
+
+        <select id="taskCategory" class="field">
+          <option value="">(project)</option>
         </select>
-        <select id="taskCategory" class="field"><option value="">(project)</option></select>
+
         <button type="submit">Save</button>
       </form>
     </div>

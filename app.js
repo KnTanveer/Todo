@@ -380,6 +380,104 @@ deleteProjectBtn.addEventListener('click', () => {
   renderAll();
 });
 
+// ---- horizontal "taskWhen" options ----
+const taskWhenOptions = document.querySelectorAll('#taskWhenOptions .option');
+const taskWhenInput = document.getElementById('taskWhen');
+
+// function to select an option and update project select visibility
+function selectTaskWhen(optionEl) {
+  // highlight the selected option
+  taskWhenOptions.forEach(o => o.classList.remove('selected'));
+  optionEl.classList.add('selected');
+
+  // update hidden input
+  taskWhenInput.value = optionEl.dataset.value;
+
+  // show/hide project select if 'someday'
+  updateProjectSelectVisibility(optionEl.dataset.value);
+}
+
+// click handlers
+taskWhenOptions.forEach(option => {
+  option.addEventListener('click', () => selectTaskWhen(option));
+});
+
+// update showTaskModal to pre-select option & handle project select visibility
+function showTaskModal(task = null, presetWhen = null) {
+  modal.style.display = 'block';
+
+  if (task) {
+    taskIdInput.value = task.id;
+    taskTitleInput.value = task.title || '';
+    taskNotesInput.value = task.notes || '';
+    taskCategorySelect.value = task.project || '';
+
+    // select the correct horizontal option
+    const selectedOption = Array.from(taskWhenOptions).find(o => o.dataset.value === task.when);
+    if (selectedOption) selectTaskWhen(selectedOption);
+  } else {
+    taskIdInput.value = '';
+    taskTitleInput.value = '';
+    taskNotesInput.value = '';
+    taskCategorySelect.value = '';
+
+    const preset = presetWhen || 'today';
+    const selectedOption = Array.from(taskWhenOptions).find(o => o.dataset.value === preset);
+    if (selectedOption) selectTaskWhen(selectedOption);
+  }
+
+  // auto-focus title
+  setTimeout(() => taskTitleInput.focus(), 60);
+}
+
+// show/hide project select
+function updateProjectSelectVisibility(whenValue) {
+  if (!taskCategorySelect) return;
+  if (whenValue === 'someday') {
+    taskCategorySelect.style.display = '';
+  } else {
+    taskCategorySelect.style.display = 'none';
+    taskCategorySelect.value = '';
+  }
+}
+
+// ---- task form submit reads from hidden input ----
+taskForm.addEventListener('submit', (ev) => {
+  ev.preventDefault();
+  const id = (taskIdInput && taskIdInput.value) || '';
+  const title = (taskTitleInput && taskTitleInput.value && taskTitleInput.value.trim()) || '';
+  if (!title) {
+    alert('Please enter a task title');
+    return;
+  }
+  const notes = taskNotesInput ? taskNotesInput.value : '';
+  const when = taskWhenInput.value || 'today';
+  const project = (taskCategorySelect && taskCategorySelect.value) || null;
+
+  if (id) {
+    const idx = tasks.findIndex(t => t.id === id);
+    if (idx >= 0) {
+      tasks[idx].title = title;
+      tasks[idx].notes = notes;
+      tasks[idx].when = when;
+      tasks[idx].project = when === 'someday' ? project : null;
+    }
+  } else {
+    tasks.push({
+      id: uid(),
+      title,
+      notes,
+      when,
+      project: when === 'someday' ? project : null,
+      done: false
+    });
+  }
+
+  saveAll();
+  hideTaskModal();
+  renderAll();
+});
+
 // ---- initialise ----
 populateProjectSelect();
 renderAll();

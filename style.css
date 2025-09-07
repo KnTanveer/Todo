@@ -198,6 +198,178 @@ main {
     border-color:white; 
 }
 
+.options-container {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.option {
+    padding: 8px 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.option.selected {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* simple form modal (keeps minimal) */
+.fab {
+    width:56px;
+    height:56px;
+    border-radius:999px;
+    background:transparent;
+    border:2px solid rgba(255,255,255,0.06); 
+    color:var(--text); 
+    font-size:26px; 
+    display:grid;
+    place-items:center; 
+    cursor:pointer;
+    pointer-events:auto
+}
+
+.modal {
+    position:fixed;
+    inset:0;
+    display:none;
+    align-items:flex-end;
+    justify-content:center;
+    padding:18px;
+    z-index:30
+}
+
+.modal.open {
+    display:flex
+}
+
+.scrim {
+    position:absolute;
+    inset:0;
+    background:linear-gradient(0deg, rgba(0,0,0,.6), rgba(0,0,0,.6));
+    backdrop-filter: blur(4px)
+}
+
+.sheet { 
+    position:relative;
+    background:#060606;
+    border-radius:14px;padding:14px;
+    width:100%;
+    max-width:720px;
+    color:var(--text);
+    box-shadow:0 12px 40px rgba(0,0,0,.6)
+}
+
+.field {
+    display:block;
+    width:100%;
+    padding:12px;border-radius:10px;border:0;
+    background:#0a0a0a;
+    color:var(--text);
+    margin-bottom:10px;
+    font-size:16px
+}
+
+.row { 
+    display:flex;
+    gap:8px
+}
+
+.btn {
+    padding:8px 12px;
+    border-radius:10px;
+    border:0;
+    cursor:pointer
+} 
+
+.btn.primary {
+    background:var(--next);
+    color:#05101c;
+    font-weight:700
+}
+
+.btn.ghost {
+    background:transparent;
+    border:1px solid rgba(255,255,255,0.04);
+    color:var(--text)
+}
+
+.projects-manager {
+    margin-top: 1rem;
+    padding: 0.5rem 0;
+    border-top: 1px solid #444;
+}
+
+.section-subtitle {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.projects-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-pill {
+    background: #222;
+    color: #fff;
+    padding: 0.4rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    cursor: pointer;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.project-pill:hover {
+    transform: scale(1.05);
+}
+
+.project-pill.removing {
+    opacity: 0;
+    transform: scale(0.7);
+}
+
+.project-pill input {
+    background: transparent;
+    border: none;
+    color: white;
+    outline: none;
+    font-size: 0.85rem;
+}
+
+.project-actions {
+    display: flex;
+    gap: 0.3rem;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+.add-project-btn {
+    margin-top: 0.5rem;
+    background: transparent;
+    border: 1px dashed #666;
+    color: #aaa;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+.add-project-btn:hover {
+    color: white;
+    border-color: white;
+}
+
 @media (max-width:520px){
 .title{font-size:22px}
 .task{font-size:16px}
